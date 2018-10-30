@@ -1,12 +1,14 @@
 <?php
-define("UPLOAD_DIR","uploads/");
+define("UPLOAD_DIR", "uploads/");
 
-$firstname ="jack";
+$firstname = "jack";
 $lastname = "smith";
 $photo = "doctor-1.jpg";
 $skill1 = "Homéopathe";
 $skill2 = "Ostéopathe";
-$university ="Digital Campus"
+$university = "Digital Campus";
+
+$phone_number = "0203040506";
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +79,9 @@ $university ="Digital Campus"
         <div class="container">
             <article>
                 <h3>Centre médicale</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, debitis delectus dolorem, est eveniet ex explicabo id iure iusto magni maiores nam non numquam odio officiis quaerat reiciendis repellat totam.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, debitis delectus dolorem, est
+                    eveniet ex explicabo id iure iusto magni maiores nam non numquam odio officiis quaerat reiciendis
+                    repellat totam.</p>
                 <a href="#" class="btn btn-light">Lire la suite</a>
             </article>
             <article>
@@ -115,7 +119,8 @@ $university ="Digital Campus"
             </article>
             <article>
                 <h3>Numéro d'urgence</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci assumenda aut delectus dolores illo laboriosam provident reiciendis tempore vel?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A adipisci assumenda aut delectus dolores
+                    illo laboriosam provident reiciendis tempore vel?</p>
                 <p>
                     <a href="tel:0243785443" class="phone-number">0243785443</a>
                 </p>
@@ -135,7 +140,7 @@ $university ="Digital Campus"
                     <input type="tel" required placeholder="Téléphone">
                     <input type="date" required placeholder="Date">
                     <input type="time" step="900" required placeholder="Heure">
-                    <select required >
+                    <select required>
                         <option disabled selected>Choisissez une spécialité</option>
                         <option>Médecin Généraliste</option>
                         <option>Dentiste</option>
@@ -151,11 +156,17 @@ $university ="Digital Campus"
                 </form>
             </article>
             <article class="doctor-thumbnail">
-                <img src="<?= UPLOAD_DIR . $photo; ?>" alt="<?=$firstname . " " . $lastname; ?>">
+                <img src="<?= UPLOAD_DIR . $photo; ?>" alt="<?= $firstname . " " . $lastname; ?>">
                 <div class="doctor-details">
-                    <h4><?=$firstname . " " . $lastname; ?></h4>
+                    <h4><?= $firstname . " " . $lastname; ?></h4>
                     <p><?php echo $skill1 ?> / <?php echo $skill2 ?></p>
                     <p><?php echo $university ?></p>
+                    <br>
+                    <?php if (!empty($phone_number)) : ?>
+                        <a href="tel:<?= $phone_number; ?>">
+                            <i class="fa fa-phone"></i>
+                            <?php echo $phone_number; ?></a>
+                    <?php endif; ?>
                     <a href="#" class="btn btn-dark">
                         <i class="fa fa-eye"></i>
                         Plus d'informations
@@ -196,7 +207,9 @@ $university ="Digital Campus"
                 <i class="fa fa-heartbeat"></i>
                 Salutem
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus debitis, dolorem doloremque iste molestiae nulla officiis provident quas quos, rerum sapiente sed sint voluptas? Accusantium asperiores dolor dolores in libero?</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus debitis, dolorem doloremque iste
+                molestiae nulla officiis provident quas quos, rerum sapiente sed sint voluptas? Accusantium asperiores
+                dolor dolores in libero?</p>
         </article>
         <article>
             <h3>Nous contacter</h3>
