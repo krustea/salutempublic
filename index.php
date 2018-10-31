@@ -1,31 +1,31 @@
 <?php
 define("UPLOAD_DIR", "uploads/");
 
-$docteurs= [];
+$docteurs = [];
 
 $docteurs[] = [
-        "firstname" => "Tony",
-        "lastname" => "Starck",
-        "photo" => "doctor-1.jpg",
-        "skills" => ["medecin","Megalomane"],
-        "university" => "Digital Campus",
-        "phone_number" => "0203040506"
+    "firstname" => "Tony",
+    "lastname" => "Starck",
+    "photo" => "doctor-1.jpg",
+    "skills" => ["Medecin", "Megalomane"],
+    "university" => "Digital Campus",
+    "phone_number" => "0203040506"
 ];
 $docteurs[] = [
-        "firstname" => "peter",
-        "lastname" => "parker",
-        "photo" => "doctor-2.jpg",
-        "skills" => ["Ostéopathe","Arachnophile"],
-        "university" => "Digital Campus",
-        "phone_number" => "0203040506"
+    "firstname" => "Peter",
+    "lastname" => "Parker",
+    "photo" => "doctor-2.jpg",
+    "skills" => ["Ostéopathe", "Arachnophile"],
+    "university" => "Digital Campus",
+    "phone_number" => "0203040506"
 ];
 $docteurs[] = [
-        "firstname" => "bruce",
-        "lastname" => "wayne",
-        "photo" => "doctor-3.jpg",
-        "skills" => ["Justicier","Homéopathe"],
-        "university" => "Digital Campus",
-        "phone_number" => "0203040506"
+    "firstname" => "Jessica",
+    "lastname" => "Jones",
+    "photo" => "doctor-3.jpg",
+    "skills" => ["Addictologue", "Homéopathe"],
+    "university" => "Digital Campus",
+    "phone_number" => "0203040506"
 ];
 
 
@@ -183,46 +183,34 @@ $phone_number = "0203040506";
                     </button>
                 </form>
             </article>
-            <article class="doctor-thumbnail">
-                <img src="<?= UPLOAD_DIR . $docteurs[0]["photo"]; ?>" alt="<?= $docteurs[0]["firstname"]. " " .$docteurs[0]["lastname"]; ?>">
-                <div class="doctor-details">
-                    <h4><?= $docteurs[0]["firstname"] . " " . $docteurs[0]["lastname"]; ?></h4>
-                    <p><?php echo $docteurs[0]["skills"][0] ?> / <?php echo $docteurs[0]["skills"][1] ?></p>
-                    <p><?php echo $docteurs[0]["university"] ?></p>
-                    <br>
-                    <?php if ($docteurs[0]["phone_number"]) : ?>
-                        <a href="tel:<?= $docteurs[0]["phone_number"]; ?>">
-                            <i class="fa fa-phone"></i>
-                            <?php echo $docteurs[0]["phone_number"]; ?></a>
-                    <?php endif; ?>
-                    <a href="#" class="btn btn-dark">
-                        <i class="fa fa-eye"></i>
-                        Plus d'informations
-                    </a>
-                </div>
-            </article>
-            <article class="doctor-thumbnail">
-                <img src="uploads/doctor-2.jpg" alt="Norma Pedric">
-                <div class="doctor-details">
-                    <h4>Norma Pedric</h4>
-                    <p>Médecin Généraliste</p>
-                    <a href="#" class="btn btn-dark">
-                        <i class="fa fa-eye"></i>
-                        Plus d'informations
-                    </a>
-                </div>
-            </article>
-            <article class="doctor-thumbnail">
-                <img src="uploads/doctor-3.jpg" alt="Maria Martin">
-                <div class="doctor-details">
-                    <h4>Maria Martin</h4>
-                    <p>Dentiste</p>
-                    <a href="#" class="btn btn-dark">
-                        <i class="fa fa-eye"></i>
-                        Plus d'informations
-                    </a>
-                </div>
-            </article>
+            <?php foreach ($docteurs as $docteur) : ?>
+                <article class="doctor-thumbnail">
+                    <img src="<?= UPLOAD_DIR . $docteur["photo"]; ?>"
+                         alt="<?= $docteur["firstname"] . " " . $docteur["lastname"]; ?>">
+                    <div class="doctor-details">
+                        <h4><?= $docteur["firstname"] . " " . $docteur["lastname"]; ?></h4>
+
+                        <ul class="doctor-skills">
+                            <?php foreach ($docteur["skills"] as $skill) : ?>
+                                <li><?= $skill; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <?php if ($docteur["university"]) :  ?>
+                        Université : <?php echo $docteur["university"] ?>
+                        <br>
+                        <?php endif; ?>
+                        <?php if ($docteur["phone_number"]) : ?>
+                            <a href="tel:<?= $docteur["phone_number"]; ?>">
+                                <i class="fa fa-phone"></i>
+                                <?php echo $docteur["phone_number"]; ?></a>
+                        <?php endif; ?>
+                        <a href="#" class="btn btn-dark">
+                            <i class="fa fa-eye"></i>
+                            Plus d'informations
+                        </a>
+                    </div>
+                </article>
+            <?php endforeach; ?>
         </div>
     </section>
 
