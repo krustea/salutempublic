@@ -1,6 +1,34 @@
 <?php
 define("UPLOAD_DIR", "uploads/");
 
+$docteurs= [];
+
+$docteurs[] = [
+        "firstname" => "Tony",
+        "lastname" => "Starck",
+        "photo" => "doctor-1.jpg",
+        "skills" => ["medecin","Megalomane"],
+        "university" => "Digital Campus",
+        "phone_number" => "0203040506"
+];
+$docteurs[] = [
+        "firstname" => "peter",
+        "lastname" => "parker",
+        "photo" => "doctor-2.jpg",
+        "skills" => ["Ostéopathe","Arachnophile"],
+        "university" => "Digital Campus",
+        "phone_number" => "0203040506"
+];
+$docteurs[] = [
+        "firstname" => "bruce",
+        "lastname" => "wayne",
+        "photo" => "doctor-3.jpg",
+        "skills" => ["Justicier","Homéopathe"],
+        "university" => "Digital Campus",
+        "phone_number" => "0203040506"
+];
+
+
 $firstname = "jack";
 $lastname = "smith";
 $photo = "doctor-1.jpg";
@@ -156,16 +184,16 @@ $phone_number = "0203040506";
                 </form>
             </article>
             <article class="doctor-thumbnail">
-                <img src="<?= UPLOAD_DIR . $photo; ?>" alt="<?= $firstname . " " . $lastname; ?>">
+                <img src="<?= UPLOAD_DIR . $docteurs[0]["photo"]; ?>" alt="<?= $docteurs[0]["firstname"]. " " .$docteurs[0]["lastname"]; ?>">
                 <div class="doctor-details">
-                    <h4><?= $firstname . " " . $lastname; ?></h4>
-                    <p><?php echo $skill1 ?> / <?php echo $skill2 ?></p>
-                    <p><?php echo $university ?></p>
+                    <h4><?= $docteurs[0]["firstname"] . " " . $docteurs[0]["lastname"]; ?></h4>
+                    <p><?php echo $docteurs[0]["skills"][0] ?> / <?php echo $docteurs[0]["skills"][1] ?></p>
+                    <p><?php echo $docteurs[0]["university"] ?></p>
                     <br>
-                    <?php if (!empty($phone_number)) : ?>
-                        <a href="tel:<?= $phone_number; ?>">
+                    <?php if ($docteurs[0]["phone_number"]) : ?>
+                        <a href="tel:<?= $docteurs[0]["phone_number"]; ?>">
                             <i class="fa fa-phone"></i>
-                            <?php echo $phone_number; ?></a>
+                            <?php echo $docteurs[0]["phone_number"]; ?></a>
                     <?php endif; ?>
                     <a href="#" class="btn btn-dark">
                         <i class="fa fa-eye"></i>
