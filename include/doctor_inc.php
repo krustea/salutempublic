@@ -18,7 +18,7 @@
                 <i class="fa fa-phone"></i>
                 <?php echo $docteur["phone_number"]; ?></a>
         <?php endif; ?>
-        <a href="<?= SITE_URL;?>doctor.php" class="btn btn-dark">
+        <a  href="<?= SITE_URL;?>doctor.php?firstname=<?php echo $docteur["firstname"]; ?>&lastname=<?php echo $docteur["lastname"] ; ?>&photo=<?php echo $docteur["photo"]; ?>" class="btn btn-dark">
             <i class="fa fa-eye"></i>
             Plus d'informations
         </a>
