@@ -1,24 +1,26 @@
+<?php $specialities = getAllSpecialtiesByDoctor($docteur["id"]);?>
+
 <article class="doctor-thumbnail">
     <img src="<?= UPLOAD_DIR . $docteur["photo"]; ?>"
-         alt="<?= $docteur["firstname"] . " " . $docteur["lastname"]; ?>">
+         alt="<?= $docteur["fullname"]; ?>">
     <div class="doctor-details">
-        <h4><?= $docteur["firstname"] . " " . $docteur["lastname"]; ?></h4>
+        <h4><?= $docteur["fullname"]; ?></h4>
 
         <ul class="doctor-skills">
-            <?php foreach ($docteur["skills"] as $skill) : ?>
-                <li><?= $skill; ?></li>
+            <?php foreach ($specialities as $speciality) : ?>
+                <li><?= $speciality["label"]; ?></li>
             <?php endforeach; ?>
         </ul>
         <?php if ($docteur["university"]) :  ?>
             Université : <?php echo $docteur["university"] ?>
             <br>
         <?php endif; ?>
-        <?php if ($docteur["phone_number"]) : ?>
-            <a href="tel:<?= $docteur["phone_number"]; ?>">
+        <?php if ($docteur["phone"]) : ?>
+            <a href="tel:<?= $docteur["phone"]; ?>">
                 <i class="fa fa-phone"></i>
-                <?php echo $docteur["phone_number"]; ?></a>
+                <?php echo $docteur["phone"]; ?></a>
         <?php endif; ?>
-        <a  href="<?= SITE_URL;?>doctor.php?firstname=<?php echo $docteur["firstname"]; ?>&lastname=<?php echo $docteur["lastname"] ; ?>&photo=<?php echo $docteur["photo"]; ?>" class="btn btn-dark">
+        <a  href="<?= SITE_URL;?>doctor.php?id=<?= $docteur["id"] ?>" class="btn btn-dark">
             <i class="fa fa-eye"></i>
             Plus d'informations
         </a>

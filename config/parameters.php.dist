@@ -1,0 +1,9 @@
+<?php
+define("UPLOAD_DIR", "uploads/");
+define("SITE_URL", "http://localhost:8888/dcdev/php/salutem/");
+
+define("DB_HOST","localhost");
+define("DB_NAME", "salutem");
+define("DB_USER", "root");
+define("DB_PASS", "root");
+

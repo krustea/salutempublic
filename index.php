@@ -4,16 +4,8 @@ require_once "config/parameters.php";
 
 require_once "model/database.php";
 $docteurs = getAllDoctors();
+$specialties = getAllEntities("specialty")
 
-
-$firstname = "jack";
-$lastname = "smith";
-$photo = "doctor-1.jpg";
-$skill1 = "Homéopathe";
-$skill2 = "Ostéopathe";
-$university = "Digital Campus";
-
-$phone_number = "0203040506";
 ?>
 
 <?php require_once "layout/header.php"?>
@@ -89,15 +81,13 @@ $phone_number = "0203040506";
                     <input type="tel" name="tel" required placeholder="Téléphone">
                     <input type="date" name="date" required placeholder="Date">
                     <input type="time" name="time" step="900" required placeholder="Heure">
-                    <select required>
+                    <select required name="specialty">
                         <option disabled selected>Choisissez une spécialité</option>
-                        <option>Médecin Généraliste</option>
-                        <option>Dentiste</option>
-                        <option>Infirmier</option>
-                        <option>Homéopathe</option>
-                        <option>Osthéopathe</option>
+                        <?php foreach($specialties as $specialty) : ?>
+                        <option value="<?php echo $specialty["id"]; ?>"><?php echo $specialty["label"]; ?></option>
+                        <?php endforeach; ?>
                     </select>
-                    <textarea placeholder="Votre message"></textarea>
+                    <textarea placeholder="Votre message" name="message"></textarea>
                     <button type="submit" class="btn btn-light">
                         <i class="fa fa-check"></i>
                         Envoyer

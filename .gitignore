@@ -1,1 +1,4 @@
 .idea/
+*.bak
+.DS_store
+config/parameters.php
