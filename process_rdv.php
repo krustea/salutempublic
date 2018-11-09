@@ -8,4 +8,5 @@ $message =$_POST["message"];
 $specialty_id = $_POST["specialty"];
 
 insertAppointment($date, $message, $patient_id, $specialty_id);
-header("Location: index.php");
+
+header("Location: index.php?errcode=" . $errcode);
