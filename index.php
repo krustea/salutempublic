@@ -6,9 +6,9 @@ require_once "model/database.php";
 $docteurs = getAllDoctors();
 $specialties = getAllEntities("specialty");
 $errcode = isset($_GET["errcode"]) ? intval($_GET["errcode"]) : null;
-?>
 
-<?php require_once "layout/header.php" ?>
+
+ require_once "layout/header.php" ?>
 <section class="home-top">
     <article class="container">
         <h1>Salutem</h1>
@@ -75,9 +75,9 @@ $errcode = isset($_GET["errcode"]) ? intval($_GET["errcode"]) : null;
         <article>
             <form method="post" class="form-appointment" action="process_rdv.php">
                 <h3>Prendre rendez-vous</h3>
-                <input type="text" name="lastname" required placeholder="Nom">
-                <input type="text" name="firstname" required placeholder="Prénom">
-                <input type="email" name="email" placeholder="Email">
+                <input type="text" name="lastname" value="<?php echo isset($user["lastname"]) ? $user["lastname"] : "" ;?>" required placeholder="Nom">
+                <input type="text" name="firstname" value="<?php echo isset($user["firstname"]) ? $user["firstname"] : "" ;?>"required placeholder="Prénom">
+                <input type="email" name="email" value="<?php echo isset($user["email"]) ? $user["email"] : "" ;?>" placeholder="Email">
                 <input type="tel" name="tel" required placeholder="Téléphone">
                 <input type="date" name="date" required placeholder="Date">
                 <input type="time" name="time" step="900" required placeholder="Heure">

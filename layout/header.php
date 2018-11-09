@@ -1,3 +1,15 @@
+<?php
+require_once __DIR__ . "/../config/parameters.php";
+require_once __DIR__ . "/../model/database.php";
+session_start();
+
+if (isset($_SESSION["id"])) {
+    $user = getAllEntities("user", $_SESSION["id"]);
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,6 +43,21 @@
                         <i class="fa fa-envelope"></i>
                         <a href="mailto:contact@salutem.fr">contact@salutem.fr</a>
                     </li>
+                    <?php if (isset($user)) : ?>
+                    <li>
+                        <i class="fa fa-user"></i>
+                        <?php echo $user["email"]; ?>
+                    </li>
+                    <li>
+                        <i class="fa fa-sign-out"></i>
+                        <a href="<?php echo SITE_URL; ?>admin/logout.php">Deconnexion</a>
+                    </li>
+                    <?php else: ; ?>
+                    <li>
+                        <i class="fa fa-sign-in"></i>
+                        <a href="<?= SITE_URL; ?>admin/login.php">Connexion</a>
+                    </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

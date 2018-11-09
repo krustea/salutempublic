@@ -22,4 +22,6 @@ if (isset($_POST["email"]) && isset($_POST["password"])) {
 
 if (!$user) {
     header("Location: login.php");
+}elseif (!$user["admin"]){
+    header("Location: ../");
 }
