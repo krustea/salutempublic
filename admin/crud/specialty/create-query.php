@@ -1,7 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: krustea
- * Date: 12/11/2018
- * Time: 09:33
- */
+require_once __DIR__ . "/../../../model/database.php";
+
+$label = $_POST["label"];
+
+insertSpecialty($label);
+
+header("Location: index.php");

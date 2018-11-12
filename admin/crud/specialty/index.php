@@ -3,7 +3,7 @@ $specialties= getAllEntities("specialty");
 //var_dump($specialties); die;
 require_once __DIR__ . "/../../layout/header.php";?>
 <h1> gestion des specialités</h1>
-<a href="#" class="btn btn-primary">
+<a href="create_form.php" class="btn btn-primary">
     <i class="fa fa-plus"></i>
     Ajouter
 </a>
@@ -24,6 +24,7 @@ require_once __DIR__ . "/../../layout/header.php";?>
         <td class="actions">
             <a href="update-form.php" class="btn btn-warning"><i class="fa fa-edit"></i>Modifier</a>
             <form action="delete-query.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $specialty["id"];?>">
                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Supprimer</button>
             </form>
         </td>

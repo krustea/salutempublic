@@ -17,3 +17,12 @@ function getAllSpecialtiesByDoctor(int $id) : array {
     return $stmt->fetchAll();
 }
 
+function insertSpecialty(string $label) : void{
+    global $connexion;
+
+    $query =" INSERT INTO specialty(label) VALUES (:label)";
+
+    $stmt = $connexion->prepare($query);
+    $stmt->bindParam(":label",$label);
+    $stmt->execute();
+}
