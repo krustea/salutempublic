@@ -10,7 +10,7 @@
 
 </head>
 
-<body class="text-center">
+<body class="text-center page-signin">
 <form action="index.php" method="post" class="form-signin">
     <i class="fas fa-7x fa-heartbeat" style="color: red"></i>
     <h1 class="h3 mb-3 font-weight-normal">Login</h1>

@@ -10,6 +10,12 @@ try {
     echo "Erreur de connexion à la base de données";
 }
 
+$files =glob(__DIR__ . "/entities/*.php");
+foreach ($files as $file){
+    require_once $file;
+}
+
+
 /**
  * Récupérer le nombre de lignes dans une table
  * @param string $table Nom de la table en base de données
@@ -77,87 +83,7 @@ function deleteEntity(string $table, int $id) : ?int {
     return $errcode;
 }
 
-function getAllDoctors(int $id = null) : array {
-    global $connexion;
 
-    $query = "
-            SELECT *,
-              CONCAT(user.firstname, ' ', user.lastname) AS fullname
-            FROM doctor
-            INNER JOIN user ON doctor.id = user.id
-    ";
-
-    if (isset($id)) {
-        $query .= " WHERE doctor.id = :id";
-    }
-
-    $stmt = $connexion->prepare($query);
-    if (isset($id)) {
-        $stmt->bindParam(":id", $id);
-    }
-    $stmt->execute();
-
-    return (isset($id)) ? $stmt->fetch() : $stmt->fetchAll();
-}
-
-function getAllSpecialtiesByDoctor(int $id) : array {
-    global $connexion;
-
-    $query = "
-            SELECT *
-            FROM specialty
-            INNER JOIN doctor_has_specialty AS dhs ON specialty.id = dhs.specialty_id
-            WHERE dhs.doctor_id = :id;
-    ";
-
-    $stmt = $connexion->prepare($query);
-    $stmt->bindParam(":id", $id);
-    $stmt->execute();
-
-    return $stmt->fetchAll();
-}
-
-function insertAppointment(string $date, string $message, int $patient_id, int $specialty_id) : int {
-    global $connexion;
-
-    $query = "INSERT INTO appointment (date, message, patient_id, specialty_id)
-                VALUES (:date, :message, :patient_id, :specialty_id)";
-
-    $stmt = $connexion->prepare($query);
-    $stmt->bindParam(":date", $date);
-    $stmt->bindParam(":message", $message);
-    $stmt->bindParam(":patient_id", $patient_id);
-    $stmt->bindParam(":specialty_id", $specialty_id);
-
-    $errcode = 0;
-    try {
-        $stmt->execute();
-    } catch (PDOException $ex) {
-        $errcode = $ex->getCode();
-    }
-
-    return $errcode;
-}
-
-function getUserByEmailPassword(string $email, string $password) : array {
-    global $connexion;
-
-    $query = "
-        SELECT *
-        FROM user
-        WHERE user.email = :email
-        AND user.password = SHA1(:password)
-    ";
-
-    $stmt = $connexion->prepare($query);
-    $stmt->bindParam(":email", $email);
-    $stmt->bindParam(":password", $password);
-    $stmt->execute();
-
-    $result = $stmt->fetch();
-
-    return $result ? $result : [];
-}
 
 
 

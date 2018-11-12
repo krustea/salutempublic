@@ -2,3 +2,12 @@
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css" ;
 @import "signin";
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "dashboard.scss";
+
+table th.actions {
+  width: 350px
+}
+table td.actions{
+  display: flex;
+  justify-content: space-around;
+}
