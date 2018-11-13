@@ -23,3 +23,12 @@ function getAllDoctors(int $id = null) : array {
     return (isset($id)) ? $stmt->fetch() : $stmt->fetchAll();
 }
 
+function deleteDoctorSpecialties(int $id): void {
+    global $connexion;
+
+    $query = "DELETE FROM doctor_has_specialty WHERE doctor_id = :id";
+
+    $stmt = $connexion->prepare($query);
+    $stmt->bindParam(":id", $id);
+    $stmt->execute();
+}
