@@ -10,24 +10,30 @@ $university = $_POST["university"];
 $phone = $_POST["phone"];
 $specialties = $_POST["specialties"];
 
-$photo = $_FILES["photo"]["name"];
-$photo_tmp = $_FILES["photo"]["tmp_name"];
-move_uploaded_file($photo_tmp, UPLOAD_DIR . $photo);
-
-updateEntity("user", $id, [
+$user_data = [
     "firstname" => $firstname,
     "lastname" => $lastname,
     "email" => $email
-]);
+];
 
-updateEntity("doctor", $id, [
-    "photo" => $photo,
+$doctor_data = [
     "university" => $university,
     "phone" => $phone
-]);
+];
 
-//Supprimer l'ensemble des spécialités du docteur
+if ($_FILES["photo"]["error"] == 0) {
+    $photo = $_FILES["photo"]["name"];
+    $photo_tmp = $_FILES["photo"]["tmp_name"];
+    move_uploaded_file($photo_tmp, UPLOAD_DIR . $photo);
+    $doctor_data["photo"] = $photo;
+}
+
+updateEntity("user", $id, $user_data);
+updateEntity("doctor", $id, $doctor_data);
+
+// Supprimer l'ensemble des spécialités du docteur
 deleteDoctorSpecialties($id);
+
 foreach ($specialties as $specialty) {
     insertEntity("doctor_has_specialty", [
         "doctor_id" => $id,
