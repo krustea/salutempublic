@@ -41,6 +41,12 @@ require_once __DIR__ . "/../security.php";
                             Spécialités
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<?= SITE_URL; ?>admin/crud/doctor/">
+                            <i class="fa fa-fw fa-notes-medical"></i>
+                            Docteurs
+                        </a>
+                    </li>
                 </ul>
 
             </div>

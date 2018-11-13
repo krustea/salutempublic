@@ -1,13 +1,26 @@
 @charset "utf-8";
 @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css" ;
-@import "signin";
+@import "../../node_modules/select2/dist/css/select2.min.css";
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+@import "../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css";
+
+@import "signin";
 @import "dashboard.scss";
 
-table th.actions {
-  width: 350px
-}
-table td.actions{
-  display: flex;
-  justify-content: space-around;
+table {
+  th {
+    &.actions {
+      width: 350px;
+    }
+  }
+  td {
+    &.actions {
+      display: flex;
+      justify-content: space-around;
+    }
+    .img-thumbnail {
+      width: 150px;
+      max-height: 150px;
+    }
+  }
 }

@@ -19,7 +19,7 @@ $errcode = isset($_GET["errcode"]) ? intval($_GET["errcode"]) : null;
 <section class="home-boxes">
     <div class="container">
         <article>
-            <h3>Centre médicale</h3>
+            <h3>Centre médical</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium, debitis delectus dolorem, est
                 eveniet ex explicabo id iure iusto magni maiores nam non numquam odio officiis quaerat reiciendis
                 repellat totam.</p>

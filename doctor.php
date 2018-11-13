@@ -11,7 +11,7 @@ $doctor = getAllDoctors($id);
 <main>
     <div class="container">
         <h1><?php echo $doctor["fullname"]; ?></h1>
-        <img src="<?= UPLOAD_DIR; ?><?php echo $doctor["photo"] ?>" alt="<?php echo $doctor["fullname"]; ?>">
+        <img src="<?= UPLOAD_URL; ?><?php echo $doctor["photo"] ?>" alt="<?php echo $doctor["fullname"]; ?>">
     </div>
 </main>
 

@@ -10,11 +10,10 @@ try {
     echo "Erreur de connexion à la base de données";
 }
 
-$files =glob(__DIR__ . "/entities/*.php");
-foreach ($files as $file){
+$files = glob(__DIR__ . "/entities/*.php");
+foreach ($files as $file) {
     require_once $file;
 }
-
 
 /**
  * Récupérer le nombre de lignes dans une table
@@ -83,7 +82,60 @@ function deleteEntity(string $table, int $id) : ?int {
     return $errcode;
 }
 
+function updateEntity(string $table, int $id, array $values): ?int {
+    global $connexion;
 
+    $errcode = null;
+
+    $query = "UPDATE $table SET ";
+    foreach ($values as $key => $value) {
+        $query .= "$key = :$key, ";
+    }
+    $query = rtrim($query, ", ");
+    $query .= " WHERE id = :id";
+
+    $stmt = $connexion->prepare($query);
+    foreach ($values as $key => $value) {
+        $stmt->bindValue(":$key", $value);
+    }
+    $stmt->bindParam(":id", $id);
+
+    try {
+        $stmt->execute();
+    } catch (PDOException $ex) {
+        $errcode = $ex->getCode();
+    }
+
+    return $errcode;
+}
+
+/** Insert a record in a table
+ * @param string $table Table name
+ * @param array $record
+ * @return int
+ */
+function insertEntity(string $table, array $record) : int {
+    global $connexion;
+
+    $query = "INSERT INTO $table (";
+    foreach ($record as $key => $item) {
+        $query .= $key . ',';
+    }
+    $query = rtrim($query,",") . ")";
+    $query .= " VALUES (";
+    foreach($record as $key => $item) {
+        $query .= ':' . $key . ',';
+    }
+    $query = rtrim($query,",") . ")";
+
+    $stmt = $connexion->prepare($query);
+    foreach($record as $key => $item) {
+        $stmt->bindValue(":$key", $item);
+    }
+    $stmt->execute();
+
+    return $connexion->lastInsertId();
+}
 
 
 
