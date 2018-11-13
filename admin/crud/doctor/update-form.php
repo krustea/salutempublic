@@ -17,7 +17,7 @@ require_once __DIR__ . "/../../layout/header.php";
 
     <h1>Modification d'un docteur</h1>
 
-    <form action="update-query.php" method="post">
+    <form action="update-query.php" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
             <label>Nom</label>
